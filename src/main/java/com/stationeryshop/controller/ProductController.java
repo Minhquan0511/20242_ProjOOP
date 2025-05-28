@@ -1,12 +1,21 @@
+package com.stationeryshop.controller;
 
-package com.stationery.controller;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.event.ActionEvent;
 
-import com.stationery.dao.CategoryDAO;
-import com.stationery.dao.InventoryDAO;
-import com.stationery.dao.ProductDAO;
-import com.stationery.model.Category;
-import com.stationery.model.InventoryItem;
-import com.stationery.model.Product;
+import com.stationeryshop.dao.CategoryDAO;
+import com.stationeryshop.dao.InventoryDAO;
+import com.stationeryshop.dao.ProductDAO;
+import com.stationeryshop.model.Category;
+import com.stationeryshop.model.InventoryItem;
+import com.stationeryshop.model.Product;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -14,66 +23,108 @@ import java.util.List;
 
 public class ProductController {
 
-    private final ProductDAO productDAO;
-    private final CategoryDAO categoryDAO;
-    private final InventoryDAO inventoryDAO;
+    @FXML
+    private Button addProductBtn;
 
-    public ProductController(Connection conn) {
-        this.productDAO = new ProductDAO(conn);
-        this.categoryDAO = new CategoryDAO(conn);
-        this.inventoryDAO = new InventoryDAO(conn);
+    @FXML
+    private TextField productNameField;
+
+    @FXML
+    private TextField unitField;
+
+    @FXML
+    private TextField searchField;
+
+    @FXML
+    private Button selectImageButton;
+
+    @FXML
+    private Button searchBtn;
+
+    @FXML
+    private TableView<?> productTable;
+
+    @FXML
+    private TableColumn<?, ?> categoryColumn;
+
+    @FXML
+    private Button deleteProductBtn;
+
+    @FXML
+    private TableColumn<?, ?> stockColumn;
+
+    @FXML
+    private Button updateProductBtn;
+
+    @FXML
+    private Button refreshBtn;
+
+    @FXML
+    private ImageView productImageView;
+
+    @FXML
+    private ComboBox<?> categoryComboBox;
+
+    @FXML
+    private TextArea descriptionArea;
+
+    @FXML
+    private TableColumn<?, ?> nameColumn;
+
+    @FXML
+    private TextField productIdField;
+
+    @FXML
+    private TextField priceField;
+
+    @FXML
+    private TextField stockQuantityField;
+
+    @FXML
+    private TableColumn<?, ?> supplierColumn;
+
+    @FXML
+    private TableColumn<?, ?> priceColumn;
+
+    @FXML
+    private TableColumn<?, ?> idColumn;
+
+    @FXML
+    private TableColumn<?, ?> descriptionColumn;
+
+    @FXML
+    void handleAddProduct(ActionEvent event) {
+
     }
 
-    // ================= PRODUCT =================
-    public void addProduct(Product product, int initialStock) throws SQLException {
-        productDAO.addProduct(product);
-        int productId = productDAO.getProductsByName(product.getProductName())
-                .stream().filter(p -> p.getCreatedAt().equals(product.getCreatedAt()))
-                .findFirst().orElseThrow(() -> new SQLException("Không tìm thấy sản phẩm vừa thêm")).getProductId();
-        inventoryDAO.updateStock(productId, initialStock); // thêm tồn kho ban đầu
+    @FXML
+    void handleSortTable(ActionEvent event) {
+
     }
 
-    public void updateProduct(Product product) throws SQLException {
-        productDAO.updateProduct(product);
+    @FXML
+    void handleSelectImage(ActionEvent event) {
+
     }
 
-    public void deleteProduct(int productId) throws SQLException {
-        // Có thể kiểm tra ràng buộc trước khi xóa hoặc dùng "soft delete"
-        inventoryDAO.updateStock(productId, -inventoryDAO.getStockLevel(productId)); // optional: xóa tồn kho
-        productDAO.deleteProduct(productId);
+    @FXML
+    void handleUpdateProduct(ActionEvent event) {
+
     }
 
-    public List<Product> getAllProducts() throws SQLException {
-        return productDAO.getAllProductsWithCategory();
+    @FXML
+    void handleDeleteProduct(ActionEvent event) {
+
     }
 
-    public List<Product> getProductsByCategory(int categoryId) throws SQLException {
-        return productDAO.getProductsByCategory(categoryId);
+    @FXML
+    void handleSearch(ActionEvent event) {
+
     }
 
-    public List<Product> searchProducts(String keyword) throws SQLException {
-        return productDAO.getProductsByName(keyword);
+    @FXML
+    void handleRefresh(ActionEvent event) {
+
     }
 
-    // ================= CATEGORY =================
-    public List<Category> getAllCategories() throws SQLException {
-        return categoryDAO.getAllCategories();
-    }
-
-    public void addCategory(Category category) throws SQLException {
-        categoryDAO.addCategory(category);
-    }
-
-    public void updateCategory(Category category) throws SQLException {
-        categoryDAO.updateCategory(category);
-    }
-
-    // ================= INVENTORY =================
-    public int getProductStock(int productId) throws SQLException {
-        return inventoryDAO.getStockLevel(productId);
-    }
-
-    public void updateStock(int productId, int quantityChange) throws SQLException {
-        inventoryDAO.updateStock(productId, quantityChange);
-    }
 }
