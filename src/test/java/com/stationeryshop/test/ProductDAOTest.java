@@ -4,14 +4,17 @@ import com.stationeryshop.dao.CategoryDAO;
 import com.stationeryshop.dao.ProductDAO;
 import com.stationeryshop.model.Category;
 import com.stationeryshop.model.Product;
-import org.junit.jupiter.api.*;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import com.stationeryshop.utils.DBConnection;
+import org.junit.jupiter.api.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class ProductDAOTest {
 
@@ -19,10 +22,11 @@ public class ProductDAOTest {
     private static ProductDAO productDAO;
     private static CategoryDAO categoryDAO;
     private static Category testCategory;
+    private static DBConnection db = new DBConnection();
 
     @BeforeAll
     public static void init() throws SQLException {
-        conn = util.DBConnection.getConnection();
+        conn
         productDAO = new ProductDAO(conn);
         categoryDAO = new CategoryDAO(conn);
         testCategory = new Category(0, "ProductTestCategory", "Desc");
