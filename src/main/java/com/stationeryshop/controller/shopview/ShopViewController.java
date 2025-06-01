@@ -1,4 +1,4 @@
-package com.stationeryshop.controller;
+package com.stationeryshop.controller.shopview;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

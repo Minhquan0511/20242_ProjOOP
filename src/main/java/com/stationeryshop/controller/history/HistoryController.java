@@ -1,4 +1,4 @@
-package com.stationeryshop.controller;
+package com.stationeryshop.controller.history;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

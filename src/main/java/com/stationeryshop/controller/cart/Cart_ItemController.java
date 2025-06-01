@@ -1,4 +1,4 @@
-package com.stationeryshop.controller;
+package com.stationeryshop.controller.cart;
 
 import com.stationeryshop.model.Product;
 import javafx.fxml.FXML;

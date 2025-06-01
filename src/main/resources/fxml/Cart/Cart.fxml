@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
 
-<VBox prefHeight="815.0" prefWidth="1203.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.stationeryshop.controller.CartController">
+<VBox prefHeight="815.0" prefWidth="1203.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.stationeryshop.controller.cart.CartController">
     <padding>
         <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
     </padding>
@@ -20,7 +20,7 @@
             <children>
                 <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../images/AddShoppingCart.png" />
+                        <Image url="@../../images/AddShoppingCart.png" />
                     </image>
                 </ImageView>
 
@@ -77,6 +77,6 @@
     </children>
 
     <stylesheets>
-        <URL value="@../styles/CartStyle.css" />
+        <URL value="@../../styles/CartStyle.css" />
     </stylesheets>
 </VBox>

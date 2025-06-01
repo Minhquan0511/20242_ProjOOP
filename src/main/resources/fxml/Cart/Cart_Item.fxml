@@ -65,7 +65,7 @@
     </children>
 
     <stylesheets>
-        <URL value="@../styles/CartStyle.css" />
+        <URL value="@../../styles/CartStyle.css" />
     </stylesheets>
 
 </HBox>
